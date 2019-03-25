@@ -1,10 +1,10 @@
-# CoderSchool FTW - Simple Google News
+# CoderSchool FTW - Movie Database
 
 Created with love by: `lvltcode`
   
-View online at: https://simple-google-news.netlify.com/
+View online at: https://react-movie-app-lvltcode.netlify.com/
   
-One or two sentence summary of your project. 
+MEGA MOVIES REACT use API from [TheMoviedb](https://developers.themoviedb.org/3/discover/movie-discover)
 
 ## Video Walkthrough
 
