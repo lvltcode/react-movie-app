@@ -1,51 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-class LambdaDemo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { loading: false, msg: null };
-  }
-
-  handleClick = api => e => {
-    e.preventDefault();
-
-    this.setState({ loading: true });
-    fetch('/.netlify/functions/' + api)
-      .then(response => response.json())
-      .then(json => this.setState({ loading: false, msg: json.msg }));
-  };
-
-  render() {
-    const { loading, msg } = this.state;
-
-    return (
-      <p>
-        <button onClick={this.handleClick('hello')}>
-          {loading ? 'Loading...' : 'Call Lambda'}
-        </button>
-        <button onClick={this.handleClick('async-chuck-norris')}>
-          {loading ? 'Loading...' : 'Call Async Lambda'}
-        </button>
-        <br />
-        <span>{msg}</span>
-      </p>
-    );
-  }
-}
+import React, { Component } from "react";
+import "./App.css";
+import NavBar from "./NavBar";
+import MoviesList from "./MoviesList";
+// import SAMPLE_DATA from "./sample_data";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      moviesList: []
+    };
+  }
+
+  async componentDidMount() {
+    let api_key = "ba36daf80182ea4b335c909ffb438ade";
+    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${api_key}&language=en-US&page=1`;
+    let results = await fetch(url);
+    let data = await results.json();
+    this.setState({
+      moviesList: data.results
+    });
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <LambdaDemo />
-        </header>
+        <NavBar />
+        <MoviesList movies={this.state.moviesList} />
       </div>
     );
   }
