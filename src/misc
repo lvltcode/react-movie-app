@@ -1,0 +1,10 @@
+ <CardTitle><h2>{this.props.title}</h2></CardTitle>
+                <CardSubtitle><h3>Release Date: {this.props.release_date.getYear}</h3></CardSubtitle>
+                
+                <CardText>Overview: {this.props.overview}}</CardText>
+                <CardSubtitle><h4>Rating: {this.props.vote_average}</h4></CardSubtitle>
+
+
+      <ReactModal isOpen={this.state.showModal}>
+        <button> Hide Modal </button>
+        </ReactModal>          
