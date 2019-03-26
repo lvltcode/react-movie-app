@@ -10,15 +10,43 @@ import {
   Col,
   Row
 } from "reactstrap";
+import ReactModal from 'react-modal';
+import { CardHeader } from "material-ui";
+import YouTube from '@u-wave/react-youtube';
+
+
+
 
 export default class Movie extends Component {
+constructor() {
+  super(); 
+  this.state = {
+    isOpen: false,
+    
+  };
+}
+
+
+
+showModal() {
+  this.setState({
+    isOpen: !this.state.isOpen
+  });
+}
+
+
+
   render() {
+    
+    
+
     return (
       <div>
-        <Row className="content">
-          <Col xs="6" sm="4">
+          <Row >
+            <Col>
             <Card>
-              <CardImg
+            <button onClick={() => this.showModal()}> 
+            <CardImg
                 top
                 width="100%"
                 src={
@@ -26,16 +54,29 @@ export default class Movie extends Component {
                 }
                 alt="Card image cap"
               />
-              <CardBody>
-                <CardTitle>{this.props.title}</CardTitle>
-                <CardSubtitle>{this.props.release_date}</CardSubtitle>
-                <CardText>{this.props.overview}}</CardText>
-                <Button>Button</Button>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </div>
+              </button>
+
+            <ReactModal isOpen={this.state.isOpen}>
+              <h1> DETAIL </h1>
+              
+                <CardTitle><h2>{this.props.title}</h2></CardTitle>
+                <CardSubtitle><h4>Released on: {this.props.release_date.getYear}</h4></CardSubtitle>
+                <CardText>Overview: {this.props.overview}</CardText>
+                <CardSubtitle><h5>Rating: {this.props.vote_average}</h5></CardSubtitle>
+                <button onClick={() => this.showModal()}> back to main screen </button>
+            
+                <YouTube
+                video="SUXWAEX2jlg"
+                />
+            
+            </ReactModal>
+
+
+              </Card>
+              </Col>
+              
+          </Row>
+          </div>
     );
   }
 }

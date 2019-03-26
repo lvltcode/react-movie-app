@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./NavBar";
 import MoviesList from "./MoviesList";
+import ReactModal from 'react-modal';
 // import SAMPLE_DATA from "./sample_data";
 
 class App extends Component {
@@ -11,6 +12,8 @@ class App extends Component {
       moviesList: []
     };
   }
+  
+  
 
   async componentDidMount() {
     let api_key = "ba36daf80182ea4b335c909ffb438ade";
@@ -21,9 +24,11 @@ class App extends Component {
       moviesList: data.results
     });
   }
+
   render() {
     return (
       <div className="App">
+        
         <NavBar />
         <MoviesList movies={this.state.moviesList} />
       </div>
