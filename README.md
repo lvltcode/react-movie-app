@@ -1,4 +1,4 @@
-# CoderSchool FTW - Movie Database
+# Movie Database
 
 Created with love by: `lvltcode`
   
